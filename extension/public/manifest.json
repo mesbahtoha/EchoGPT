@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "EchoGPT — AI Side Panel",
+  "version": "1.0.0",
+  "description": "EchoGPT redesign: chat, write, read, translate, image, video, compare and MCP in a Chrome side panel.",
+  "minimum_chrome_version": "114",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Open EchoGPT side panel",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "index.html",
+    "open_panel_on_action_click": true
+  },
+  "permissions": ["sidePanel"]
+}

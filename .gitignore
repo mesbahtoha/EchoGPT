@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+dist-ssr/
+*.local
+.DS_Store
+*.pem
+
+# Keep extension/dist out of version control — build it with `npm run build`
+extension/dist/
+web/out/
+web/*.tsbuildinfo
+extension/node_modules/
+web/node_modules/

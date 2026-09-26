@@ -1,7 +1,5 @@
 # Vercel upload excludes (in addition to .gitignore).
-# Keep deploys lean — never upload local build artifacts, zips, or screenshots.
-extension_dist.zip
-*.zip
+# Keep deploys lean — never upload local build artifacts, or screenshots.
 web/screenshoot/
 web/.next/
 web/out/

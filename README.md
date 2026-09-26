@@ -17,7 +17,8 @@ The project includes:
 
 | Experience | Live Demo |
 |---|---|
-| 🌐 EchoGPT Web App & Landing Page | **https://exhogpt-web.vercel.app/** |
+| 🌐 EchoGPT Web App | **https://exhogpt-web.vercel.app/** |
+| 🎨 EchoGPT Landing Page | **https://exhogpt-web.vercel.app/landing** |
 | 🧩 EchoGPT Chrome Extension Demo | **https://echogpt-extension.vercel.app/** |
 
 ### Recommended review flow
@@ -355,6 +356,7 @@ The implementation addresses the requested areas:
 For the fastest review, start with the live demos:
 
 - **Web:** https://exhogpt-web.vercel.app/
+- **Landing Page:** https://exhogpt-web.vercel.app/landing
 - **Extension Demo:** https://echogpt-extension.vercel.app/
 
 For the actual Chrome Side Panel experience, download `extension_dist.zip` from the repository root and follow the installation steps above.

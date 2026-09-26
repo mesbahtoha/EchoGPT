@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import LoginCard from "./LoginCard";
 import { backdropAnim, modalAnim } from "@/lib/motion";
+import { useDialogFocus } from "@/lib/useDialogFocus";
 
 interface SignInModalProps {
   open: boolean;
@@ -12,6 +13,7 @@ interface SignInModalProps {
 }
 
 export default function SignInModal({ open, onClose }: SignInModalProps) {
+  const focusRef = useDialogFocus<HTMLDivElement>(open);
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -34,6 +36,8 @@ export default function SignInModal({ open, onClose }: SignInModalProps) {
             aria-modal="true"
             aria-label="Sign in to EchoGPT"
             {...modalAnim}
+            ref={focusRef}
+            tabIndex={-1}
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-[440px]"
           >

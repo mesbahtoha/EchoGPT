@@ -36,7 +36,7 @@ export default function TasksPage() {
           </div>
 
           <div className="mx-auto mt-6 max-w-[1060px] border-b border-slate-200 dark:border-white/10">
-            <div className="flex items-center gap-7" role="tablist" aria-label="Task categories">
+            <div className="flex items-center gap-7 overflow-x-auto" role="tablist" aria-label="Task categories">
               {taskTabs.map((t) => (
                 <button
                   key={t}
@@ -45,7 +45,7 @@ export default function TasksPage() {
                   aria-selected={tab === t}
                   onClick={() => setTab(t)}
                   className={cn(
-                    "relative pb-2.5 text-[15px] transition",
+                    "relative shrink-0 whitespace-nowrap pb-2.5 text-[15px] transition",
                     tab === t
                       ? "font-semibold text-brand-600 dark:text-brand-300"
                       : "font-normal text-slate-500 hover:text-ink-900 dark:text-slate-400 dark:hover:text-slate-100"

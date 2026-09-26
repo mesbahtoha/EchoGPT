@@ -12,6 +12,7 @@ import {
   type LucideIcon
 } from "lucide-react";
 import AppShell from "@/components/AppShell";
+import { useToast } from "@/components/Toast";
 
 const stats: { icon: LucideIcon; title: string; lines: string[] }[] = [
   { icon: Sparkles, title: "AI-Enhanced", lines: ["Powered by Google", "Gemini"] },
@@ -47,6 +48,7 @@ const templates: { icon: LucideIcon; title: string; description: string; tags: s
 ];
 
 export default function SopPage() {
+  const toast = useToast();
   return (
     <AppShell>
       <main className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto">
@@ -101,6 +103,7 @@ export default function SopPage() {
                 <button
                   key={title}
                   type="button"
+                  onClick={() => toast(`Demo: the ${title} template opens on the live site`)}
                   className="rounded-[14px] border border-[#E8E5EF] bg-white p-5 text-left shadow-[0_1px_3px_rgba(24,18,43,0.05)] transition hover:shadow-composer dark:border-white/10 dark:bg-[#1a1528]"
                 >
                   <span className="flex min-w-0 items-start gap-3">

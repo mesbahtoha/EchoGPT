@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { LogOut, X } from "lucide-react";
 import { mockUser } from "../lib/user";
+import { useExitAnimation } from "../lib/useExitAnimation";
 
 interface Props {
   open: boolean;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function SettingsModal({ open, onClose }: Props) {
+  const { visible, closing } = useExitAnimation(open);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -16,11 +19,11 @@ export default function SettingsModal({ open, onClose }: Props) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!visible) return null;
 
   return (
     <div
-      className="anim-fade-in fixed inset-0 z-50 grid place-items-center bg-[#101840]/50 p-4 backdrop-blur-[2px]"
+      className={closing ? "anim-fade-out fixed inset-0 z-50 grid place-items-center bg-[#101840]/50 p-4 backdrop-blur-[2px]" : "anim-fade-in fixed inset-0 z-50 grid place-items-center bg-[#101840]/50 p-4 backdrop-blur-[2px]"}
       onClick={onClose}
       role="presentation"
     >
@@ -29,7 +32,7 @@ export default function SettingsModal({ open, onClose }: Props) {
         aria-modal="true"
         aria-label="Settings"
         onClick={(e) => e.stopPropagation()}
-        className="anim-pop-in w-full max-w-[340px] rounded-2xl border border-slate-100 bg-white p-5 shadow-[0_24px_70px_rgba(16,24,64,0.3)]"
+        className={closing ? "anim-pop-out w-full max-w-[340px] rounded-2xl border border-slate-100 bg-white p-5 shadow-[0_24px_70px_rgba(16,24,64,0.3)]" : "anim-pop-in w-full max-w-[340px] rounded-2xl border border-slate-100 bg-white p-5 shadow-[0_24px_70px_rgba(16,24,64,0.3)]"}
       >
         <div className="flex items-center justify-between">
           <h2 className="text-[15px] font-bold text-slate-900">Settings</h2>

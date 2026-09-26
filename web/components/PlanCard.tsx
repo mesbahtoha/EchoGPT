@@ -44,8 +44,8 @@ interface PlanCardProps {
 /** Shared subscription plan card — identical on /subscriptions and /landing. */
 export default function PlanCard({ plan, action }: PlanCardProps) {
   return (
-    <article className="relative flex h-full flex-col rounded-2xl border-[1.5px] border-brand-200 bg-white p-6 pt-7 shadow-[0_2px_10px_rgba(109,58,230,0.08)] dark:border-brand-500/40 dark:bg-[#1a1528]">
-      <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand-600 px-3 py-[3px] text-[10px] font-bold uppercase tracking-wide text-white">
+    <article className="relative flex h-full flex-col rounded-2xl border-[1.5px] border-brand-200 bg-white p-6 pt-7 shadow-[0_2px_10px_rgba(109,58,230,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-composer active:scale-[0.995] dark:border-brand-500/40 dark:bg-[#1a1528] dark:hover:border-brand-400/60">
+      <span className="absolute -top-3 left-1/2 max-w-[calc(100%-2rem)] -translate-x-1/2 truncate whitespace-nowrap rounded-full bg-brand-600 px-3 py-[3px] text-[10px] font-bold uppercase tracking-wide text-white">
         Recommended
       </span>
       <p className="flex items-center gap-1.5 text-[14px] font-semibold text-ink-900 dark:text-slate-100">

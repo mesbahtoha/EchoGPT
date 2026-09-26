@@ -6,6 +6,7 @@ import { Check, Copy, Link2, Share, X } from "lucide-react";
 import { FacebookIcon, LinkedInIcon, TelegramIcon, WhatsAppIcon } from "./BrandIcons";
 import { externalLinks } from "@/lib/links";
 import { backdropAnim, modalAnim } from "@/lib/motion";
+import { useDialogFocus } from "@/lib/useDialogFocus";
 
 interface ShareModalProps {
   open: boolean;
@@ -14,6 +15,7 @@ interface ShareModalProps {
 
 export default function ShareModal({ open, onClose }: ShareModalProps) {
   const [copied, setCopied] = useState(false);
+  const focusRef = useDialogFocus<HTMLDivElement>(open);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -44,16 +46,11 @@ export default function ShareModal({ open, onClose }: ShareModalProps) {
   async function copyLink() {
     try {
       await navigator.clipboard.writeText(siteUrl());
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
     } catch {
-      const ta = document.createElement("textarea");
-      ta.value = siteUrl();
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
+      setCopied(false);
     }
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1600);
   }
 
   const rows = [
@@ -77,6 +74,8 @@ export default function ShareModal({ open, onClose }: ShareModalProps) {
             aria-modal="true"
             aria-label="Share website"
             {...modalAnim}
+            ref={focusRef}
+            tabIndex={-1}
             onClick={(e) => e.stopPropagation()}
             className="w-full max-w-[400px] rounded-2xl bg-white shadow-pop dark:bg-[#1e1930] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)]"
           >

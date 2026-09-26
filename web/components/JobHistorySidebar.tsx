@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { backdropAnim, drawerAnim } from "@/lib/motion";
+import { useDialogFocus } from "@/lib/useDialogFocus";
 
 interface JobHistorySidebarProps {
   open: boolean;
@@ -12,6 +13,7 @@ interface JobHistorySidebarProps {
 }
 
 export default function JobHistorySidebar({ open, onClose, onNewChat }: JobHistorySidebarProps) {
+  const focusRef = useDialogFocus<HTMLElement>(open);
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -44,6 +46,8 @@ export default function JobHistorySidebar({ open, onClose, onNewChat }: JobHisto
             aria-modal="true"
             aria-label="Job Analysis History"
             {...drawerAnim}
+            ref={focusRef}
+            tabIndex={-1}
             className="fixed bottom-0 right-0 top-0 z-50 flex w-[min(92vw,380px)] flex-col bg-[#faf8ff] shadow-pop dark:bg-[#161224] sm:w-[380px]"
           >
             <div className="flex items-center justify-between px-5 pb-3 pt-5">

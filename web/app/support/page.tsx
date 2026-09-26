@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, Facebook, Instagram, Linkedin, Mail, type LucideIcon } from "lucide-react";
+import { ChevronRight, Facebook, Instagram, Linkedin, Mail, ScrollText, ShieldCheck, type LucideIcon } from "lucide-react";
 import AppShell from "@/components/AppShell";
 import { externalLinks } from "@/lib/links";
 
@@ -16,11 +16,11 @@ function ContactRow({
   href?: string;
 }) {
   const classes =
-    "flex w-full items-center gap-4 rounded-2xl border border-[#E8E5EF] bg-white p-5 text-left shadow-[0_1px_3px_rgba(24,18,43,0.05)] transition hover:shadow-composer dark:border-white/10 dark:bg-[#1a1528]";
+    "group flex w-full items-center gap-4 rounded-2xl border border-[#E8E5EF] bg-white p-5 text-left shadow-[0_1px_3px_rgba(24,18,43,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-composer active:scale-[0.99] dark:border-white/10 dark:bg-[#1a1528] dark:hover:border-brand-500/30";
 
   const inner = (
     <>
-      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-brand-50 text-ink-900 dark:bg-brand-500/15 dark:text-slate-100">
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-brand-50 text-ink-900 transition-transform duration-300 group-hover:scale-110 dark:bg-brand-500/15 dark:text-slate-100">
         <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
       </span>
       <span className="min-w-0 flex-1">
@@ -29,7 +29,7 @@ function ContactRow({
           {description}
         </span>
       </span>
-      <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" strokeWidth={2} aria-hidden />
+      <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-brand-600 dark:text-slate-500" strokeWidth={2} aria-hidden />
     </>
   );
 
@@ -79,6 +79,24 @@ export default function SupportPage() {
                 title="Email Us"
                 description="We will aim to respond in 1 day"
                 href={externalLinks.email}
+              />
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <SectionLabel>Legal</SectionLabel>
+            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <ContactRow
+                icon={ScrollText}
+                title="Terms & Conditions"
+                description="Accounts, plans, acceptable use, and AI accuracy."
+                href="/terms"
+              />
+              <ContactRow
+                icon={ShieldCheck}
+                title="Privacy Policy"
+                description="What we collect, why, and the controls you have."
+                href="/privacy"
               />
             </div>
           </div>

@@ -4,9 +4,11 @@ import { useState } from "react";
 import AppShell from "@/components/AppShell";
 import PageHeading from "@/components/PageHeading";
 import StudioGenerationPanel from "@/components/StudioPanel";
+import { useToast } from "@/components/Toast";
 import { imageModelGroups, imageModelNames } from "@/lib/imageModels";
 
 export default function ImageStudioPage() {
+  const toast = useToast();
   const [prompt, setPrompt] = useState("Turn my photo into a professional headshot");
   const [aspect, setAspect] = useState("1:1");
   const [count, setCount] = useState("1");
@@ -34,7 +36,7 @@ export default function ImageStudioPage() {
               onModelChange={setModel}
               modelGroups={imageModelGroups}
               paidNote="Image generation is a paid feature — upgrade to start creating images."
-              onGenerate={() => {}}
+              onGenerate={() => toast("Demo: image generation runs on the live site")}
               onAdd={() => document.getElementById("studio-prompt")?.focus()}
             />
           </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useExitAnimation } from "../lib/useExitAnimation";
 
 interface Connector {
   id: string;
@@ -9,6 +10,7 @@ interface Connector {
 export default function ConnectorsPanel() {
   const [connectors, setConnectors] = useState<Connector[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const { visible: formVisible, closing: formClosing } = useExitAnimation(showForm);
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [auth, setAuth] = useState("");
@@ -68,8 +70,8 @@ export default function ConnectorsPanel() {
         </button>
       </div>
 
-      {showForm && (
-        <div className="anim-expand-in mt-2 rounded-[10px] border border-slate-200 bg-white p-3 shadow-card">
+      {formVisible && (
+        <div className={formClosing ? "anim-expand-out mt-2 rounded-[10px] border border-slate-200 bg-white p-3 shadow-card" : "anim-expand-in mt-2 rounded-[10px] border border-slate-200 bg-white p-3 shadow-card"}>
           <p className="text-[13px] font-semibold text-slate-900">Add custom connector</p>
           <div className="mt-2.5 space-y-2.5">
             <div>

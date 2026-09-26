@@ -1,0 +1,10 @@
+# Vercel upload excludes (in addition to .gitignore).
+# Keep deploys lean — never upload local build artifacts, zips, or screenshots.
+extension_dist.zip
+*.zip
+web/screenshoot/
+web/.next/
+web/out/
+web/*.tsbuildinfo
+extension/dist/
+node_modules/

@@ -12,3 +12,17 @@ web/out/
 web/*.tsbuildinfo
 extension/node_modules/
 web/node_modules/
+
+# Local screenshots — not part of the project
+web/screenshoot/
+
+# Vercel CLI cache — never commit
+.vercel/
+
+# Build artifacts — reproducible via `npm run build`, never push
+*.zip
+extension_dist.zip
+
+# Local env files
+.env
+.env*.local

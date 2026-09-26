@@ -78,6 +78,7 @@ export default function SubscriptionsPage() {
                       type="button"
                       onClick={() => setOpenFaq(open ? null : i)}
                       aria-expanded={open}
+                      aria-controls={`subs-faq-${i}`}
                       className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                     >
                       <span className="text-[15px] font-medium text-ink-900 dark:text-slate-100">{f.q}</span>
@@ -88,7 +89,7 @@ export default function SubscriptionsPage() {
                     </button>
                     <AnimatePresence initial={false}>
                       {open && (
-                        <motion.div {...accordionAnim}>
+                        <motion.div {...accordionAnim} id={`subs-faq-${i}`} role="region">
                           <p className="px-5 pb-5 text-[14px] font-normal leading-relaxed text-[#777386] dark:text-slate-400">
                             {f.a}
                           </p>

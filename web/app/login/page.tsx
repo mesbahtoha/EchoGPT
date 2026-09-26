@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
 import LoginCard from "@/components/LoginCard";
 import { modalAnim } from "@/lib/motion";
 
@@ -55,16 +54,6 @@ export default function LoginPage() {
           </linearGradient>
         </defs>
       </svg>
-
-      {/* Back */}
-      <button
-        type="button"
-        onClick={() => router.back()}
-        aria-label="Go back"
-        className="absolute left-4 top-4 rounded-xl border border-slate-200 bg-white p-2.5 text-ink-900 shadow-sm transition hover:border-brand-300 hover:text-brand-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 sm:left-6 sm:top-6"
-      >
-        <ChevronLeft className="h-5 w-5" strokeWidth={2} aria-hidden />
-      </button>
 
       {/* Card */}
       <div className="relative grid min-h-screen place-items-center p-4 py-16">

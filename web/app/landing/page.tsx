@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -138,6 +139,9 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen w-full bg-white text-ink-900 antialiased dark:bg-[#100d1a] dark:text-slate-100">
+      <a href="#landing-main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white">
+        Skip to content
+      </a>
       {/* ================= NAV ================= */}
       <header className="fixed inset-x-0 top-0 z-40 border-b border-slate-100/80 bg-white/85 backdrop-blur-md dark:border-white/10 dark:bg-[#100d1a]/85">
         <div className="mx-auto flex h-[68px] w-full max-w-[1200px] items-center justify-between px-5 sm:px-8">
@@ -149,7 +153,7 @@ export default function LandingPage() {
                 <a
                   key={l.href}
                   href={l.href}
-                  aria-current={active ? "true" : undefined}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
                     "relative py-1 text-[14px] font-medium transition",
                     active ? "text-brand-600 dark:text-brand-300" : "text-ink-700 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-300"
@@ -183,6 +187,7 @@ export default function LandingPage() {
               onClick={() => setMenuOpen((v) => !v)}
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
+              aria-controls="landing-mobile-nav"
               className="rounded-lg p-2 text-ink-700 dark:text-slate-300"
             >
               {menuOpen ? <X className="h-6 w-6" aria-hidden /> : <Menu className="h-6 w-6" aria-hidden />}
@@ -190,14 +195,14 @@ export default function LandingPage() {
           </div>
         </div>
         {menuOpen && (
-          <nav className="border-t border-slate-100 bg-white px-5 py-4 dark:border-white/10 dark:bg-[#100d1a] lg:hidden" aria-label="Mobile">
+          <nav id="landing-mobile-nav" className="border-t border-slate-100 bg-white px-5 py-4 dark:border-white/10 dark:bg-[#100d1a] lg:hidden" aria-label="Mobile">
             <div className="flex flex-col gap-1">
               {navLinks.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
                   onClick={() => setMenuOpen(false)}
-                  aria-current={activeSection === l.href.slice(1) ? "true" : undefined}
+                  aria-current={activeSection === l.href.slice(1) ? "page" : undefined}
                   className={cn(
                     "rounded-lg px-3 py-2.5 text-[15px] font-medium hover:bg-brand-50 dark:text-slate-200",
                     activeSection === l.href.slice(1) ? "bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300" : "text-ink-700"
@@ -219,6 +224,7 @@ export default function LandingPage() {
         )}
       </header>
 
+      <main id="landing-main">
       {/* ================= HERO ================= */}
       <section className="cyber-grid-bg relative overflow-hidden pt-[68px]">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-0 mx-auto h-[560px] max-w-[1200px] bg-[radial-gradient(600px_320px_at_50%_-60px,rgba(109,58,230,0.14),transparent)]" />
@@ -376,14 +382,22 @@ export default function LandingPage() {
           <SectionHeading eyebrow="Product Tour" title="Take a look inside" subtitle="A workspace that stays out of your way and puts your work front and center." />
           <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
             {[
-              { tag: "Chat", title: "Ask anything", desc: "Streaming answers with model switching, history sync, and one-click follow-ups.", src: "/landing/shot-home.png", alt: "EchoGPT home screen with suggestion cards and chat composer" },
-              { tag: "Image Studio", title: "Describe it, see it", desc: "Aspect ratios, batch counts, and 8 art models with a live creation feed.", src: "/landing/shot-image-studio.png", alt: "EchoGPT Image Studio generation panel" },
-              { tag: "Compare", title: "Three answers, one prompt", desc: "Line models up side by side and crown a winner for every question.", src: "/landing/shot-compare.png", alt: "EchoGPT Compare mode with model pills and composer" }
+              { tag: "Chat", title: "Ask anything", desc: "Streaming answers with model switching, history sync, and one-click follow-ups.", src: "/landing/shot-home.png", alt: "EchoGPT home screen with suggestion cards and chat composer", width: 1139, height: 842 },
+              { tag: "Image Studio", title: "Describe it, see it", desc: "Aspect ratios, batch counts, and 8 art models with a live creation feed.", src: "/landing/shot-image-studio.png", alt: "EchoGPT Image Studio generation panel", width: 1276, height: 577 },
+              { tag: "Compare", title: "Three answers, one prompt", desc: "Line models up side by side and crown a winner for every question.", src: "/landing/shot-compare.png", alt: "EchoGPT Compare mode with model pills and composer", width: 1611, height: 869 }
             ].map((c, i) => (
               <Reveal key={c.tag} delay={0.06 * i}>
                 <div className="group h-full overflow-hidden rounded-2xl border border-[#E8E5EF] bg-white shadow-card transition hover:-translate-y-1 hover:shadow-composer dark:border-white/10 dark:bg-[#1a1528]">
                   <div className="overflow-hidden border-b border-slate-100 dark:border-white/10">
-                    <img src={c.src} alt={c.alt} loading="lazy" className="h-auto w-full transition duration-500 group-hover:scale-[1.03]" />
+                    <Image
+                      src={c.src}
+                      alt={c.alt}
+                      width={c.width}
+                      height={c.height}
+                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="h-auto w-full transition duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
                   <div className="p-5">
                     <p className="text-[12px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300">{c.tag}</p>
@@ -491,11 +505,11 @@ export default function LandingPage() {
               const open = openFaq === i;
               return (
                 <div key={f.q} className="overflow-hidden rounded-[14px] border border-[#E8E5EF] bg-white shadow-card dark:border-white/10 dark:bg-[#1a1528]">
-                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} aria-expanded={open} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} aria-expanded={open} aria-controls={`landing-faq-${i}`} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
                     <span className="text-[15px] font-medium">{f.q}</span>
                     <ChevronDown className={cn("h-5 w-5 shrink-0 text-slate-400 transition-transform", open && "rotate-180")} aria-hidden />
                   </button>
-                  {open && <p className="px-5 pb-5 text-[14px] leading-relaxed text-[#777386] dark:text-slate-400">{f.a}</p>}
+                  {open && <p id={`landing-faq-${i}`} role="region" className="px-5 pb-5 text-[14px] leading-relaxed text-[#777386] dark:text-slate-400">{f.a}</p>}
                 </div>
               );
             })}
@@ -524,6 +538,8 @@ export default function LandingPage() {
           </Reveal>
         </div>
       </section>
+
+      </main>
 
       {/* ================= FOOTER ================= */}
       <footer className="border-t border-slate-100 bg-white dark:border-white/10 dark:bg-[#100d1a]">
@@ -567,6 +583,7 @@ export default function LandingPage() {
               <li><a href="/subscriptions" className="text-[#55516b] hover:text-brand-600 dark:text-slate-400">Pricing</a></li>
               <li><a href="/login" className="text-[#55516b] hover:text-brand-600 dark:text-slate-400">Sign In</a></li>
               <li><a href="/" className="text-[#55516b] hover:text-brand-600 dark:text-slate-400">Open App</a></li>
+              <li><a href={externalLinks.appifydevs} target="_blank" rel="noopener noreferrer" className="text-[#55516b] hover:text-brand-600 dark:text-slate-400">AppifyDevs</a></li>
               <li><a href={externalLinks.email} className="text-[#55516b] hover:text-brand-600 dark:text-slate-400">{externalLinks.emailAddress}</a></li>
             </ul>
           </nav>
@@ -575,8 +592,8 @@ export default function LandingPage() {
           <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center justify-between gap-2 px-5 py-5 text-[13px] text-slate-400 sm:flex-row sm:px-8">
             <p>© 2026 EchoGPT. All rights reserved.</p>
             <p className="flex gap-4">
-              <a href="/support" className="hover:text-brand-600">Terms of Use</a>
-              <a href="/support" className="hover:text-brand-600">Privacy Policy</a>
+              <a href="/terms" className="transition hover:text-brand-600">Terms of Use</a>
+              <a href="/privacy" className="transition hover:text-brand-600">Privacy Policy</a>
             </p>
           </div>
         </div>

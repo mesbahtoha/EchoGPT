@@ -3,10 +3,12 @@
 import { useMemo, useState } from "react";
 import AppShell from "@/components/AppShell";
 import SearchInput from "@/components/SearchInput";
+import { useToast } from "@/components/Toast";
 import { storeApps } from "@/lib/store";
 
 export default function StorePage() {
   const [query, setQuery] = useState("");
+  const toast = useToast();
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -75,6 +77,7 @@ export default function StorePage() {
                   )}
                   <button
                     type="button"
+                    onClick={() => toast(`Demo: ${app.name} opens on the live site`)}
                     className="shrink-0 rounded-full border border-slate-200 px-4 py-[7px] text-[13px] font-medium text-ink-900 transition hover:border-brand-400 hover:text-brand-700 dark:border-white/10 dark:text-slate-200 dark:hover:border-brand-400 dark:hover:text-brand-300"
                   >
                     Try App

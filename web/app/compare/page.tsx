@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Expand, LayoutGrid } from "lucide-react";
 import AppShell from "@/components/AppShell";
+import { useToast } from "@/components/Toast";
 import { cn } from "@/lib/cn";
 
 const allModels = ["EchoGPT", "DeepSeek V4 Pro", "Nemotron 3 Ultra"];
@@ -10,6 +11,7 @@ const allModels = ["EchoGPT", "DeepSeek V4 Pro", "Nemotron 3 Ultra"];
 const avatarColors = ["#6d3ae6", "#3fa9f5", "#f5a623"];
 
 export default function ComparePage() {
+  const toast = useToast();
   const [mode, setMode] = useState<"compare" | "focus">("focus");
   const [selected, setSelected] = useState<string[]>(allModels);
   const [input, setInput] = useState("");
@@ -126,6 +128,7 @@ export default function ComparePage() {
               </div>
               <button
                 type="button"
+                onClick={() => toast("Demo: multi-model comparison runs on the live site")}
                 className="h-10 w-[110px] shrink-0 rounded-[10px] bg-brand-600 text-[14px] font-semibold text-white shadow-[0_4px_12px_rgba(109,58,230,0.3)] transition hover:bg-brand-700 active:scale-[0.98]"
               >
                 Compare

@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MessageSquareText, Plus, Search, X } from "lucide-react";
 import { recentConversations, type Conversation } from "@/lib/conversations";
 import { backdropAnim, drawerAnim } from "@/lib/motion";
+import { useDialogFocus } from "@/lib/useDialogFocus";
 
 interface HistorySidebarProps {
   open: boolean;
@@ -22,6 +23,7 @@ function groupOf(c: Conversation): string {
 
 export default function HistorySidebar({ open, onClose, onPick, onNewChat }: HistorySidebarProps) {
   const [query, setQuery] = useState("");
+  const focusRef = useDialogFocus<HTMLElement>(open);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -72,6 +74,8 @@ export default function HistorySidebar({ open, onClose, onPick, onNewChat }: His
             aria-modal="true"
             aria-label="Chat history"
             {...drawerAnim}
+            ref={focusRef}
+            tabIndex={-1}
             className="fixed bottom-0 right-0 top-0 z-50 flex w-[min(92vw,380px)] flex-col border-l border-brand-100 bg-white shadow-pop dark:border-white/10 dark:bg-[#161224] sm:w-[380px]"
           >
             {/* Header */}

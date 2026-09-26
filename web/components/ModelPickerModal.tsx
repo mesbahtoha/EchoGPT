@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { backdropAnim, modalAnim } from "@/lib/motion";
+import { useDialogFocus } from "@/lib/useDialogFocus";
 import type { ImageModelGroup } from "@/lib/imageModels";
 
 interface ModelPickerModalProps {
@@ -16,6 +17,7 @@ interface ModelPickerModalProps {
 }
 
 export default function ModelPickerModal({ open, onClose, groups, value, onChange }: ModelPickerModalProps) {
+  const focusRef = useDialogFocus<HTMLDivElement>(open);
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -38,6 +40,8 @@ export default function ModelPickerModal({ open, onClose, groups, value, onChang
             aria-modal="true"
             aria-label="Choose a model"
             {...modalAnim}
+            ref={focusRef}
+            tabIndex={-1}
             onClick={(e) => e.stopPropagation()}
             className="flex max-h-[85vh] w-full max-w-[600px] flex-col overflow-hidden rounded-2xl bg-white shadow-pop dark:bg-[#1e1930] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)]"
           >

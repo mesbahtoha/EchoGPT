@@ -4,8 +4,10 @@ import { useState } from "react";
 import AppShell from "@/components/AppShell";
 import PageHeading from "@/components/PageHeading";
 import StudioGenerationPanel from "@/components/StudioPanel";
+import { useToast } from "@/components/Toast";
 
 export default function VideoStudioPage() {
+  const toast = useToast();
   const [prompt, setPrompt] = useState("");
   const [aspect, setAspect] = useState("16:9");
   const [model, setModel] = useState("Veo 3.1 fast");
@@ -28,7 +30,7 @@ export default function VideoStudioPage() {
               model={model}
               onModelChange={setModel}
               paidNote="Video generation is a paid feature — upgrade to start creating videos."
-              onGenerate={() => {}}
+              onGenerate={() => toast("Demo: video generation runs on the live site")}
               onAdd={() => document.getElementById("studio-prompt")?.focus()}
             />
           </div>

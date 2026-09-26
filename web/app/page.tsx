@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
@@ -25,6 +25,13 @@ export default function HomePage() {
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
   const [sending, setSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const replyTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (replyTimer.current !== null) window.clearTimeout(replyTimer.current);
+    };
+  }, []);
 
   const isEmpty = messages.length === 0;
 
@@ -49,7 +56,8 @@ export default function HomePage() {
     setInput("");
     setSending(true);
     scrollToBottom();
-    window.setTimeout(() => {
+    if (replyTimer.current !== null) window.clearTimeout(replyTimer.current);
+    replyTimer.current = window.setTimeout(() => {
       const reply: ChatMessageData = {
         id: `a-${Date.now()}`,
         role: "assistant",

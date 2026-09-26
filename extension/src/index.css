@@ -98,6 +98,48 @@ body {
   }
 }
 
+@keyframes ext-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ext-pop-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+}
+
+@keyframes ext-drop-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+}
+
+@keyframes ext-expand-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
 .anim-fade-in {
   animation: ext-fade-in 0.18s ease-out both;
 }
@@ -119,12 +161,33 @@ body {
   animation: ext-msg-in 0.25s ease-out both;
 }
 
+.anim-fade-out {
+  animation: ext-fade-out 0.16s ease-in both;
+}
+
+.anim-pop-out {
+  animation: ext-pop-out 0.16s ease-in both;
+  transform-origin: center;
+}
+
+.anim-drop-out {
+  animation: ext-drop-out 0.15s ease-in both;
+}
+
+.anim-expand-out {
+  animation: ext-expand-out 0.16s ease-in both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .anim-fade-in,
   .anim-pop-in,
   .anim-drop-in,
   .anim-expand-in,
-  .anim-msg-in {
+  .anim-msg-in,
+  .anim-fade-out,
+  .anim-pop-out,
+  .anim-drop-out,
+  .anim-expand-out {
     animation: none;
   }
 }

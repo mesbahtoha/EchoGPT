@@ -12,7 +12,9 @@ export const routeMap: Record<string, string> = {
   "ai-sop": "/sop",
   support: "/support",
   newsletter: "/newsletter",
-  subscriptions: "/subscriptions"
+  subscriptions: "/subscriptions",
+  terms: "/terms",
+  privacy: "/privacy"
 };
 
 const pathToNav: Record<string, string> = {
@@ -28,7 +30,9 @@ const pathToNav: Record<string, string> = {
   "/sop": "ai-sop",
   "/support": "support",
   "/newsletter": "newsletter",
-  "/subscriptions": "subscriptions"
+  "/subscriptions": "subscriptions",
+  "/terms": "terms",
+  "/privacy": "privacy"
 };
 
 export function navIdFromPath(pathname: string | null): string {

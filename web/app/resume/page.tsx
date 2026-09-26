@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Clock, Lightbulb, Plus, SendHorizontal } from "lucide-react";
 import AppShell from "@/components/AppShell";
 import JobHistorySidebar from "@/components/JobHistorySidebar";
+import { useToast } from "@/components/Toast";
 
 const features = [
   {
@@ -25,6 +26,7 @@ const features = [
 ];
 
 export default function ResumePage() {
+  const toast = useToast();
   const [jobText, setJobText] = useState("");
   const [historyOpen, setHistoryOpen] = useState(false);
 
@@ -92,6 +94,7 @@ export default function ResumePage() {
                 </span>
                 <button
                   type="button"
+                  onClick={() => toast("Demo: job analysis runs on the live site")}
                   className="flex h-10 shrink-0 items-center gap-2 rounded-[10px] bg-brand-300 px-5 text-[14px] font-semibold text-white transition hover:bg-brand-600"
                 >
                   Analyze Job

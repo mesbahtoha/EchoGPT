@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { extensionModels } from "../lib/models";
+import { useExitAnimation } from "../lib/useExitAnimation";
 
 interface Props {
   modelId: string;
@@ -10,6 +11,7 @@ interface Props {
 export default function ExtensionModelSelector({ modelId, onChange }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { visible: menuVisible, closing: menuClosing } = useExitAnimation(open, 150);
   const active = extensionModels.find((m) => m.id === modelId) ?? extensionModels[0];
 
   useEffect(() => {
@@ -42,11 +44,11 @@ export default function ExtensionModelSelector({ modelId, onChange }: Props) {
           aria-hidden
         />
       </button>
-      {open && (
+      {menuVisible && (
         <ul
           role="listbox"
           aria-label="Select model"
-          className="anim-drop-in absolute bottom-[calc(100%+8px)] left-0 z-50 max-h-60 w-52 origin-bottom-left overflow-y-auto rounded-xl border border-slate-200 bg-white p-1 shadow-[0_16px_40px_rgba(16,24,64,0.18)]"
+          className={menuClosing ? "anim-drop-out absolute bottom-[calc(100%+8px)] left-0 z-50 max-h-60 w-52 origin-bottom-left overflow-y-auto rounded-xl border border-slate-200 bg-white p-1 shadow-[0_16px_40px_rgba(16,24,64,0.18)]" : "anim-drop-in absolute bottom-[calc(100%+8px)] left-0 z-50 max-h-60 w-52 origin-bottom-left overflow-y-auto rounded-xl border border-slate-200 bg-white p-1 shadow-[0_16px_40px_rgba(16,24,64,0.18)]"}
         >
           {extensionModels.map((m) => {
             const selected = m.id === modelId;

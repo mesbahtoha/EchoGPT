@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CirclePlus, History, Link2, Mic, Rocket, SendHorizontal, Shapes, Paperclip, Image as ImageIcon, FileText } from "lucide-react";
 import ModelSelector from "./ModelSelector";
 import ToolButton from "./ToolButton";
+import { useToast } from "./Toast";
 import { recentConversations } from "@/lib/conversations";
 import { dropdownAnim } from "@/lib/motion";
 
@@ -27,6 +28,8 @@ const attachMenu = [
 export default function Composer({ value, onChange, onSend, modelId, onModelChange, onOpenHistory, sending }: ComposerProps) {
   const [plusOpen, setPlusOpen] = useState(false);
   const plusRef = useRef<HTMLDivElement>(null);
+  const toast = useToast();
+  const demo = (feature: string) => toast(`Demo: ${feature} is enabled on the live site`);
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -56,9 +59,9 @@ export default function Composer({ value, onChange, onSend, modelId, onModelChan
       <div className="flex h-11 min-w-0 items-center gap-[5px] px-[5px] sm:h-[53px]">
         <ModelSelector modelId={modelId} onChange={onModelChange} />
         <span className="mx-[7px] h-[26px] w-px shrink-0 bg-slate-200 dark:bg-white/10" aria-hidden />
-        <ToolButton icon={Shapes} label="Connectors" />
+        <ToolButton icon={Shapes} label="Connectors" onClick={() => demo("Connectors")} />
         <span className="mx-[5px] h-[26px] w-px shrink-0 bg-slate-200 dark:bg-white/10" aria-hidden />
-        <ToolButton icon={Rocket} label="Boost" accent />
+        <ToolButton icon={Rocket} label="Boost" accent onClick={() => demo("Boost")} />
         <span className="min-w-0 flex-1" aria-hidden />
         <div className="relative shrink-0" ref={plusRef}>
           <ToolButton icon={CirclePlus} label="More tools" active={plusOpen} onClick={() => setPlusOpen((v) => !v)} />
@@ -74,7 +77,10 @@ export default function Composer({ value, onChange, onSend, modelId, onModelChan
                     key={id}
                     type="button"
                     role="menuitem"
-                    onClick={() => setPlusOpen(false)}
+                    onClick={() => {
+                      setPlusOpen(false);
+                      demo(label);
+                    }}
                     className="flex w-full items-center gap-[11px] rounded-lg px-[13px] py-[9px] text-[14px] font-medium text-ink-700 hover:bg-brand-50 hover:text-brand-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-brand-300"
                   >
                     <Icon className="h-[18px] w-[18px] text-slate-400 dark:text-slate-500" strokeWidth={2} aria-hidden />
@@ -90,7 +96,7 @@ export default function Composer({ value, onChange, onSend, modelId, onModelChan
 
       {/* Input row */}
       <div className="mx-[5px] mt-2 flex h-14 min-w-0 items-center gap-[9px] rounded-[12px] border border-[#E8E5EF] bg-white px-[13px] dark:border-white/10 dark:bg-white/5 sm:mt-[11px] sm:h-[62px]">
-        <ToolButton icon={Link2} label="Attach link" />
+        <ToolButton icon={Link2} label="Attach link" onClick={() => demo("Link attachments")} />
         <label htmlFor="composer-input" className="sr-only">
           Ask a question
         </label>
@@ -103,7 +109,7 @@ export default function Composer({ value, onChange, onSend, modelId, onModelChan
           placeholder="Ask a question..."
           className="min-w-0 flex-1 resize-none bg-transparent text-[15px] font-normal text-ink-900 placeholder:text-slate-400 focus:outline-none dark:text-slate-100 dark:placeholder:text-slate-500"
         />
-        <ToolButton icon={Mic} label="Voice input" />
+        <ToolButton icon={Mic} label="Voice input" onClick={() => demo("Voice input")} />
         <button
           type="button"
           onClick={onSend}

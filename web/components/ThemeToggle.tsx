@@ -19,14 +19,17 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-pressed={isDark}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="rounded-lg p-[11px] text-ink-500 transition hover:bg-brand-100 hover:text-brand-700 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-brand-300"
+      className="rounded-lg p-[11px] text-ink-500 transition-all duration-200 hover:scale-105 hover:bg-brand-100 hover:text-brand-700 active:scale-95 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-brand-300"
     >
-      {isDark ? (
-        <Moon className="h-5 w-5" strokeWidth={2} aria-hidden />
-      ) : (
-        <Sun className="h-5 w-5" strokeWidth={2} aria-hidden />
-      )}
+      <span key={isDark ? "moon" : "sun"} className="anim-rise-in block">
+        {isDark ? (
+          <Moon className="h-5 w-5" strokeWidth={2} aria-hidden />
+        ) : (
+          <Sun className="h-5 w-5" strokeWidth={2} aria-hidden />
+        )}
+      </span>
     </button>
   );
 }

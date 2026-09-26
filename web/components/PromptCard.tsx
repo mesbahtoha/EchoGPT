@@ -18,7 +18,7 @@ export default function PromptCard({ card, index, onSelect }: PromptCardProps) {
       transition={{ delay: 0.05 * index, duration: 0.35, ease: "easeOut" }}
       whileHover={{ y: -2 }}
       onClick={() => onSelect(card)}
-      className="group min-h-[110px] rounded-[15px] border border-[#E8E5EF] bg-white p-[22px] text-left shadow-card transition-shadow hover:shadow-composer focus-visible:outline-brand-500 dark:border-white/10 dark:bg-[#1a1528]"
+      className="group min-h-[110px] rounded-[15px] border border-[#E8E5EF] bg-white p-[22px] text-left shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-composer active:scale-[0.99] focus-visible:outline-brand-500 dark:border-white/10 dark:bg-[#1a1528] dark:hover:border-brand-500/40"
       aria-label={`Use prompt: ${card.title}`}
     >
       <h3 className="text-[15px] font-semibold leading-snug text-ink-900 group-hover:text-brand-700 dark:text-slate-100 dark:group-hover:text-brand-300">

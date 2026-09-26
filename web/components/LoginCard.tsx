@@ -138,11 +138,11 @@ export default function LoginCard({ compact = false, onDone, onEmailAuth }: Logi
 
       <p className="mt-3 text-center text-[12px] font-normal leading-relaxed text-slate-400 dark:text-slate-500">
         By proceeding, you agree to our{" "}
-        <a href="/support" className="text-brand-600 hover:underline dark:text-brand-300">
+        <a href="/terms" className="text-brand-600 hover:underline dark:text-brand-300">
           Terms of use
         </a>
         . Read our{" "}
-        <a href="/support" className="text-brand-600 hover:underline dark:text-brand-300">
+        <a href="/privacy" className="text-brand-600 hover:underline dark:text-brand-300">
           Privacy Policy
         </a>
       </p>

@@ -92,7 +92,7 @@ export default function NewsletterPage() {
             {benefits.map((b) => (
               <div
                 key={b.title}
-                className="rounded-2xl border border-[#E8E5EF] bg-white p-6 shadow-[0_1px_3px_rgba(24,18,43,0.05)] dark:border-white/10 dark:bg-[#1a1528]"
+                className="group rounded-2xl border border-[#E8E5EF] bg-white p-6 shadow-[0_1px_3px_rgba(24,18,43,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-composer dark:border-white/10 dark:bg-[#1a1528] dark:hover:border-brand-500/30"
               >
                 <h2 className="text-[16px] font-semibold text-ink-900 dark:text-slate-100">{b.title}</h2>
                 <p className="mt-2 text-[13.5px] font-normal leading-relaxed text-[#777386] dark:text-slate-400">

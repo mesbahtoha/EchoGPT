@@ -1,169 +1,127 @@
-# EchoGPT Redesign
+# EchoGPT — Web App, Landing Page & Chrome Extension
 
-A polished, production-quality redesign of the EchoGPT web app and Chrome side-panel extension — built as a frontend internship assignment for AppifyDevs.
+A polished, production-quality EchoGPT frontend monorepo: a Next.js web app (chat workspace, studios, subscriptions, landing page, login), plus a React + Vite Chrome side-panel extension. Built with TypeScript, Tailwind CSS, Lucide icons, and Framer Motion.
 
-## Overview
-
-This monorepo contains two separate frontend applications sharing the same EchoGPT visual language:
-
-- `web/` — EchoGPT desktop web app (Next.js)
-- `extension/` — EchoGPT Chrome side-panel extension (React + Vite, Manifest V3)
-
-Both use mock data only. No backend or real AI API is required. All chat, models, history, and settings interactions are simulated with local state.
-
-## Features
-
-### Web App
-
-- 280px lavender sidebar with logo, New Chat, Engagement + Help & Support sections, PRO badges, bottom icon rail
-- Sign-in header with mock auth modal
-- Centered empty-state hero (“Hello There! 👋…”) with 4 clickable prompt cards
-- Bottom composer with model selector, tool dividers, rocket/boost, plus-menu, history popover, attachment/mic/send
-- Mock chat: send creates user + assistant messages, typing indicator, auto-scroll
-- Recent chats popover, model dropdown, sidebar active states, mobile drawer
-- Framer Motion entrance, hover, modal, and dropdown animations
-- Fully responsive: drawer + 1-column cards + full-width composer on mobile
-
-### Chrome Extension
-
-- Compact side-panel layout: header + scrollable content + anchored composer + 60px right rail
-- Header with Chat title, blue New Chat, history toggle
-- Right rail: Chat, Write, Read, Translate, Image, Video, Compare, MCP + Upgrade, Settings, avatar
-- Home grid of 7 quick-action cards + 3 horizontal suggested prompts
-- Per-tool mock panels: Write tones, Translate languages, Read summarizer, Image gallery, Video storyboard, Compare columns, MCP toggles
-- Composer with DeepSeek V4 Pro selector, 6 compact icons, Search button, Enter-to-send helper
-- Settings modal (320–360px): avatar, name, Free badge, email, red Sign Out
-- Model selector with 5 models, selected check, Escape/backdrop close
-- No horizontal overflow; content scrolls, composer stays usable
-
-## Tech Stack
-
-**Web (`web/`):**
-
-- Next.js 14, React 18, TypeScript
-- Tailwind CSS 3, Lucide React, Framer Motion
-
-**Extension (`extension/`):**
-
-- React 18, TypeScript, Vite 5
-- Tailwind CSS 3, Lucide React
-- Chrome Manifest V3 + Side Panel API
-
-## Project Structure
+## Repository
 
 ```text
 ./
   README.md
-  web/
+  web/                    # Next.js 14 web app (App Router)
     app/
-      layout.tsx
-      page.tsx
-      globals.css
-    components/
-      Sidebar.tsx
-      SidebarItem.tsx
-      Header.tsx
-      Logo.tsx
-      PromptCard.tsx
-      Composer.tsx
-      ModelSelector.tsx
-      ToolButton.tsx
-      ChatMessage.tsx
-      SignInModal.tsx
-      RecentChats.tsx
-    lib/
-      models.ts
-      prompts.ts
-      sidebarItems.ts
-      conversations.ts
-      user.ts
-      cn.ts
-  extension/
-    public/
-      manifest.json
-    index.html
+      page.tsx            # Home / chat workspace
+      landing/page.tsx    # Marketing landing page
+      login/page.tsx      # Login page (echogpt.live/login design)
+      image-studio/ video-studio/ compare/ history/ store/
+      tasks/ resume/ sop/ connectors/ support/ newsletter/ subscriptions/
+      layout.tsx          # Inter font, theme init, Theme + Motion providers
+      globals.css         # Design tokens, focus states, cyber accent layer
+    components/           # Sidebar, Header, Composer, modals, drawers,
+                          # LoginCard, PlanCard, BrandIcons, ModelSelector…
+    lib/                  # routes, sidebarItems, plans, store, tasks,
+                          # models, links, motion tokens, conversations…
+    public/               # logo.svg, landing/ preview screenshots
+  extension/              # Chrome MV3 side-panel (React + Vite)
     src/
-      App.tsx
-      main.tsx
-      index.css
-      components/
-        ExtensionHeader.tsx
-        RightRail.tsx
-        QuickActionCard.tsx
-        SuggestedPrompt.tsx
-        ExtensionComposer.tsx
-        ExtensionModelSelector.tsx
-        SettingsModal.tsx
-        ToolPanel.tsx
-      lib/
-        models.ts
-        tools.ts
-        user.ts
-        cn.ts
+      App.tsx             # Popup root (chat / history views)
+      components/         # RightRail, Composer, ModelSelector, ToolPanel,
+                          # Write/Read/Translate/Image/Video/Compare/
+                          # Connectors panels, HistoryView, SettingsModal…
+      lib/                # tools, models, history, user, cn
+    public/               # manifest.json, icons, background.js
 ```
 
-## Running the Web App
+## Features
 
-1. Open web directory
-2. Install dependencies
-3. Run dev server
-4. Build for production
+### Web app
+- Lavender sidebar (284px desktop): logo + wordmark, New Chat, Engagement + Help & Support sections, PRO badges, bottom rail (landing link, share, settings, theme toggle)
+- Home chat workspace: hero greeting, 4 prompt cards, bottom composer (model selector, tool buttons, attach menu, history drawer, voice/send), mock chat with typing indicator, mobile-compact composer
+- Studios & tools: Image/Video studios with model-picker modal, Compare (Compare/Focus modes), Connectors, History page, Store (real brand logos), AI Tasks (Ideas/Work/Fun/Online Content), Resume + Job-history drawer, SOP builder + history status card
+- Subscriptions: the 4 real plans (Monthly/Quarterly/Half-Yearly/Annual) with benefit rows, model lists, brand icons, FAQ accordion
+- Login: `/login` page matching the reference (social buttons,decorative background) + matching sign-in modal
+- Landing page (`/landing`): nav with scroll-spy + mobile menu + theme toggle, hero with glitch headline + app preview, Features, AI Models, real product screenshots, Why, real plan pricing, Testimonials, FAQ, CTA, footer
+- Share + Settings modals, Job-history drawer, global light/dark mode, standardized open/close motion with reduced-motion support
+
+### Chrome extension
+- Side-panel popup: header, chat view, history view, anchored composer, 60px right rail (Chat, Write, Read, Translate, Image, Video, Compare, MCP, Upgrade, Settings, avatar)
+- 7 tool panels, model selector dropdown, conversation search, connector manager, settings modal
+- Enter/exit + dropdown animations, message slide-ins, hover-lift cards (all `prefers-reduced-motion` safe)
+
+## Tech stack
+
+- **Web:** Next.js 14 (App Router), React 18, TypeScript (strict), Tailwind CSS 3, Framer Motion 11, Lucide React
+- **Extension:** React 18, TypeScript, Vite 5, Tailwind CSS 3, Lucide React, Chrome Manifest V3 + Side Panel API
+
+## Getting started
+
+### Web app
 
 ```powershell
 Set-Location web
 npm install
-npm run dev
-# open http://localhost:3000
-npm run build
-```
-
-Typecheck:
-
-```powershell
+npm run dev      # http://localhost:3000
 npm run typecheck
+npm run build    # production build
 ```
 
-## Running the Extension
-
-1. Open extension directory
-2. Install dependencies
-3. Build the extension
-4. Open chrome://extensions
-5. Enable Developer Mode
-6. Click Load unpacked
-7. Select the extension/dist folder
+### Chrome extension
 
 ```powershell
 Set-Location extension
 npm install
-npm run build
-# dist/ is the unpacked extension
-npm run dev  # optional panel preview at http://localhost:5173
+npm run typecheck
+npm run build    # outputs dist/
+# chrome://extensions → Developer Mode → Load unpacked → select dist/
+npm run dev      # optional panel preview at http://localhost:5173
 ```
 
-The build copies `public/manifest.json` into `dist/` automatically. `side_panel.default_path` and `action.default_popup` both point to `index.html`.
+### Deploy to Vercel (monorepo: 2 projects, 1 GitHub repo)
 
-## Design Decisions
+This repo holds **two deployable apps**. Create **two Vercel projects** from the same GitHub repo:
 
-- Lavender sidebar (`#f7f5ff`), white cards, 10–16px radii, soft violet shadows — matches reference while staying clean
-- Inter for both apps; 13–15px body, semibold headings, slate muted text
-- Reusable data arrays (`sidebarItems`, `promptCards`, `quickTools`, `extensionModels`) instead of duplicated JSX
-- Small typed components (`SidebarItem`, `ToolButton`, `PromptCard`, `QuickActionCard`) for reuse and a11y
-- Framer Motion only for entrance, cards, modals, dropdowns — no noisy animation
-- Mock-first: `mockAssistantReply()` / `mockExtReply()` branch on keywords so the demo feels alive without an API
+**Project 1 — Web app (Next.js)**
+1. Vercel → Add New → Project → Import this repo.
+2. Set **Root Directory** to `web` (Framework Preset auto-detects **Next.js** via `web/vercel.json`).
+3. Build Command `npm run build`, Install Command `npm install` (defaults — already pinned in `web/vercel.json`).
+4. No Environment Variables required (mock data only). Deploy.
+
+**Project 2 — Extension demo (Vite static preview)**
+1. Vercel → Add New → Project → Import the **same** repo again.
+2. Set **Root Directory** to `extension` (Preset auto-detects **Vite** via `extension/vercel.json`).
+3. Build Command `npm run build`, Output Directory `dist`. SPA fallback (`/(.*)` → `/index.html`) is already configured.
+4. Deploy. This hosts the side-panel UI as a browsable demo — the real Chrome extension is still installed via `extension/dist/` (see above).
+
+Notes:
+- `node >= 18.17` is pinned in both `package.json` files via `engines`.
+- `extension_dist.zip`, `*/dist`, `web/.next`, `web/screenshoot/`, and `.vercel/` are ignored by `.gitignore` / `.vercelignore` — they are never pushed or uploaded.
+- Vercel CLI alternative: `vercel --cwd web` for the app, `vercel --cwd extension` for the demo.
+
+## Design decisions
+
+- Single purple brand system (`brand 50–900`), Inter everywhere, shared motion tokens (`lib/motion.ts`: backdrop/modal/drawer/dropdown/accordion) so every overlay moves identically
+- Data-driven UI: `sidebarItems`, `promptCards`, `storeApps`, `taskCards`, `plans`, `imageModelGroups` instead of duplicated JSX
+- Shared building blocks: `PlanCard` (subscriptions + landing), `LoginCard` (login page + modal), `BrandIcons` (official brand SVGs), `ModelMark` glyph rendering
+- Central external links in `lib/links.ts`
+- Accessibility: labeled icon buttons, dialog/drawer semantics, listbox patterns, Escape-to-close, focus trap + return focus, skip-link on landing, visible focus rings
+
+## Demo scope (honest disclosure)
+
+No backend or API keys are used — everything below is simulated with local state and resets on reload:
+
+- Auth (login modal/page, subscribe buttons), newsletter signup
+- Chat replies (`mockAssistantReply`), extension replies (`mockExtReply`), history/conversations lists
+- Generate/Analyze/Compare/Try-App/template actions show a "demo" toast instead of calling a model
+- Image/Video studios, SOP history error state, and empty states are static showcases
 
 ## Assumptions
 
-- Reference screenshots are the source of truth for layout, not pixel-exact Figma
-- Mock auth/user (`Alex Morgan`, Free plan) is acceptable; no real login
-- Extension icons in `manifest.json` omitted intentionally to avoid binary assets; Chrome loads without them
-- No backend, persistence, or analytics — state resets on reload
+- Reference screenshots are the source of truth for layout (light mode first, dark mode supported throughout the web app; the extension is light-only by design for now — dark mode is on the roadmap)
+- The Telegram share target is the provided community invite URL (`lib/links.ts`)
+- No persistence, analytics, or accounts — state resets on reload
 
-## Future Improvements
+## Future improvements
 
-- Persist chats + settings to `chrome.storage` / localStorage
-- Real streaming chat API with model routing
-- Image/video generation previews and compare diff view
-- Command palette, keyboard shortcuts, i18n
-- Extension icons, screenshots, and Chrome Web Store listing assets
+- Persist chats + settings (`localStorage` / `chrome.storage`)
+- Real streaming chat API with model routing; real image/video generation
+- `next/image` rollout to remaining raw `<img>` usages
 - Playwright + Vitest coverage, CI builds for `web` and `extension`

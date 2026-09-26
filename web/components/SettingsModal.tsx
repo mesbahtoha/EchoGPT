@@ -15,6 +15,7 @@ import {
 import { useTheme } from "./ThemeProvider";
 import { FacebookIcon, LinkedInIcon } from "./BrandIcons";
 import { backdropAnim, dropdownAnim, modalAnim } from "@/lib/motion";
+import { useDialogFocus } from "@/lib/useDialogFocus";
 import { webModels } from "@/lib/models";
 
 interface SettingsModalProps {
@@ -33,6 +34,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 export default function SettingsModal({ open, onClose }: SettingsModalProps) {
+  const focusRef = useDialogFocus<HTMLDivElement>(open);
   const { theme, setTheme } = useTheme();
   const [themeOpen, setThemeOpen] = useState(false);
   const [modelOpen, setModelOpen] = useState(false);
@@ -101,6 +103,8 @@ export default function SettingsModal({ open, onClose }: SettingsModalProps) {
             aria-modal="true"
             aria-label="Settings"
             {...modalAnim}
+            ref={focusRef}
+            tabIndex={-1}
             onClick={(e) => e.stopPropagation()}
             className="max-h-[90vh] w-full max-w-[400px] overflow-y-auto rounded-2xl bg-white shadow-pop dark:bg-[#1e1930] dark:shadow-[0_12px_40px_rgba(0,0,0,0.5)]"
           >
@@ -244,7 +248,7 @@ export default function SettingsModal({ open, onClose }: SettingsModalProps) {
               <SectionLabel>Terms and Conditions</SectionLabel>
               <div className="mt-1">
                 <a
-                  href="/support"
+                  href="/terms"
                   onClick={onClose}
                   className="group flex w-full items-center justify-between py-[10px] text-left"
                 >
@@ -258,7 +262,7 @@ export default function SettingsModal({ open, onClose }: SettingsModalProps) {
                   </span>
                 </a>
                 <a
-                  href="/support"
+                  href="/privacy"
                   onClick={onClose}
                   className="group flex w-full items-center justify-between py-[10px] text-left"
                 >

@@ -1,15 +1,16 @@
 # EchoGPT — Web App, Landing Page & Chrome Side-Panel Extension
 
-A polished frontend implementation of the **EchoGPT ecosystem**, built as a recruiter-ready submission for the **Software Engineering Internship (Frontend) — Onsite** assignment at **AppifyDevs**.
+A modern and responsive frontend implementation of the **EchoGPT ecosystem**, bringing together a full-featured web application, a dedicated landing page, and a Chrome Side Panel extension in a consistent and cohesive user experience.
 
 The project includes:
 
-- A responsive **Next.js web application** with chat workspace, tools/studios, subscriptions, login, history, tasks, and supporting flows.
-- A modern **single-page EchoGPT landing page** designed to present the product and guide users toward the web app and extension.
-- A **React + Vite Chrome Manifest V3 side-panel extension** with chat, history, AI tools, model selection, connectors, settings, and upgrade flows.
-- A consistent design system with reusable components, responsive layouts, smooth motion, accessibility considerations, and light/dark theme support across the web experience.
+- A responsive **Next.js web application** with a chat workspace, AI tools and studios, subscriptions, authentication flows, conversation history, tasks, resume and SOP tools, connectors, and supporting product experiences.
+- A modern **single-page landing website** featuring product highlights, AI models, screenshots, pricing, FAQs, calls to action, and responsive navigation.
+- A **React + Vite Chrome Manifest V3 Side Panel extension** with chat, conversation history, AI tools, model selection, quick actions, connectors, settings, and upgrade flows.
+- A reusable and scalable **design system** with consistent components, responsive layouts, smooth animations and transitions, modern micro-interactions, accessibility considerations, and light/dark theme support across the web experience.
+- A structured frontend architecture focused on **reusability, maintainability, responsiveness, and visual consistency** across the different product experiences.
 
-> **Demo note:** This submission is a frontend-focused implementation. Authentication, AI responses, subscriptions, generation tools, and other backend-dependent behaviors are intentionally simulated with local state for demonstration purposes.
+> **Demo Note:** This project is focused on the frontend experience. Backend-dependent functionality such as authentication, AI responses, subscriptions, content generation, and certain integrations is represented using mock data and local state for demonstration purposes.
 
 ---
 
